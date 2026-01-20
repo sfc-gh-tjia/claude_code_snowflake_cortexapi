@@ -1,0 +1,28 @@
+model_list:
+  - model_name: claude-sonnet-4-5-20250929
+    litellm_params:
+      model: openai/claude-sonnet-4-5
+      api_base: "https://YOUR_ACCOUNT.snowflakecomputing.com/api/v2/cortex/v1"
+      api_key: <YOUR_JWT_TOKEN>
+      input_map:
+        max_tokens: "max_completion_tokens"
+      extra_headers:
+        X-Snowflake-User: "YOUR_USERNAME"
+        X-Snowflake-Role: "ACCOUNTADMIN"
+
+  - model_name: claude-haiku-4-5-20251001
+    litellm_params:
+      model: openai/claude-haiku-4-5
+      api_base: "https://YOUR_ACCOUNT.snowflakecomputing.com/api/v2/cortex/v1"
+      api_key: <YOUR_JWT_TOKEN>
+      input_map:
+        max_tokens: "max_completion_tokens"
+      extra_headers:
+        X-Snowflake-User: "YOUR_USERNAME"
+        X-Snowflake-Role: "ACCOUNTADMIN"
+
+litellm_settings:
+  drop_params: true
+
+general_settings:
+  master_key: sk-local-dev-1234

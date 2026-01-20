@@ -1,0 +1,38 @@
+# Generated files
+litellm_config.yaml
+
+# Draft/reference files
+draft_guide.md
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+ENV/
+.venv/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Secrets (never commit these!)
+*.p8
+*.pem
+snowflake_key*
+
+# Logs
+*.log
+pm2-*.log
+
+# Node
+node_modules/

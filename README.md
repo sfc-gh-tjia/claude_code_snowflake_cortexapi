@@ -76,11 +76,38 @@ ALTER USER YOUR_USERNAME SET RSA_PUBLIC_KEY='<paste_key_content_here>';
 
 ### Step 4: Apply LiteLLM Patch
 
-Snowflake's API doesn't support `max_tokens`, so we patch LiteLLM to rename it:
+Snowflake's API doesn't support `max_tokens`, so we patch LiteLLM to rename it.
+
+**Option A: Automated (Recommended)**
 
 ```bash
 python patches/apply_patch.py
 ```
+
+**Option B: Manual Patch**
+
+If the automated patch fails, you can manually edit LiteLLM:
+
+1. Open the file:
+
+```bash
+nano $(pip show litellm | grep Location | cut -d: -f2 | xargs)/litellm/llms/openai/openai.py
+```
+
+2. Search for `async def acompletion` (`Ctrl+W` in nano)
+
+3. Find the line calling `self.make_openai_chat_completion_request` and paste this block **immediately BEFORE** that line:
+
+```python
+        # --- HACK: FORCE SNOWFLAKE COMPATIBILITY ---
+        if "max_tokens" in data:
+            data["max_completion_tokens"] = data.pop("max_tokens")
+        # -------------------------------------------
+```
+
+4. Repeat for `async def astreaming` function if needed
+
+5. Save and exit (`Ctrl+O`, `Enter`, `Ctrl+X`)
 
 ### Step 5: Configure auto_refresh.py
 

@@ -1,6 +1,6 @@
 # Claude Code on Snowflake Cortex
 
-Run [Claude Code](https://docs.anthropic.com/en/docs/claude-code) using Snowflake's Cortex AI service as the backend—uses Snowflake credits instead of Claude API credits.
+Run [Claude Code](https://code.claude.com/docs/en/overview) using Snowflake's Cortex AI service as the backend—uses Snowflake credits instead of Claude API credits.
 
 ```
 ┌─────────────────┐      ┌─────────────────┐      ┌─────────────────┐
@@ -231,7 +231,7 @@ model_list:
 | Meta | `openai/llama4-maverick`, `openai/llama4-scout` |
 | Anthropic | `openai/claude-sonnet-4-5`, `openai/claude-haiku-4-5` |
 
-> Check [Snowflake Cortex documentation](https://docs.snowflake.com/en/user-guide/snowflake-cortex/aisql#regional-availability) for the latest available models.
+> Check [Snowflake Cortex documentation](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-rest-api) for the latest available models.
 
 After modifying, restart the proxy:
 
@@ -318,5 +318,5 @@ MIT
 ## Acknowledgments
 
 - [Anthropic](https://anthropic.com) for Claude
-- [LiteLLM](https://github.com/BerriAI/litellm) for the proxy layer
+- [LiteLLM](https://docs.litellm.ai/docs/) for the proxy layer
 - [Snowflake](https://snowflake.com) for Cortex AI

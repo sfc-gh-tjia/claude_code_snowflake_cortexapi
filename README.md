@@ -331,6 +331,6 @@ MIT
 
 ## Acknowledgments
 
-- [Anthropic](https://anthropic.com) for Claude
+- [Claude Code](https://code.claude.com/docs/en/overview) by Anthropic
 - [LiteLLM](https://docs.litellm.ai/docs/) for the proxy layer
-- [Snowflake](https://snowflake.com) for Cortex AI
+- [Snowflake Cortex](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-rest-api) for LLM inference

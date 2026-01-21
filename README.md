@@ -202,6 +202,43 @@ claude
 | `claude-sonnet-4-5-20250929` | → | `claude-sonnet-4-5` |
 | `claude-haiku-4-5-20251001` | → | `claude-haiku-4-5` |
 
+## Using Other LLM Models
+
+This setup isn't limited to Claude! You can use **any model available in Snowflake Cortex** (OpenAI GPT, Gemini, Llama, etc.) by modifying the model mapping in `litellm_config.yaml`.
+
+The trick: Claude Code expects specific model names internally. By using those names as aliases (`model_name`) but pointing to a different actual model (`litellm_params.model`), you can swap the backend model.
+
+**Example: Use OpenAI GPT-4.1 instead of Claude**
+
+Edit `auto_refresh.py` or directly modify `litellm_config.yaml`:
+
+```yaml
+model_list:
+  - model_name: claude-sonnet-4-5-20250929    # Keep this - Claude Code expects it
+    litellm_params:
+      model: openai/openai-gpt-4.1            # Change this to any Cortex model
+      api_base: "https://YOUR_ACCOUNT.snowflakecomputing.com/api/v2/cortex/v1"
+      api_key: "<token>"
+      # ... rest of config
+```
+
+**Available Snowflake Cortex Models:**
+
+| Provider | Model Examples |
+|----------|----------------|
+| OpenAI | `openai/openai-gpt-4.1`, `openai/openai-gpt-4o` |
+| Google | `openai/gemini-2.5-pro`, `openai/gemini-2.0-flash` |
+| Meta | `openai/llama3.3-70b`, `openai/llama4-maverick` |
+| Anthropic | `openai/claude-sonnet-4-5`, `openai/claude-haiku-4-5` |
+
+> Check [Snowflake Cortex documentation](https://docs.snowflake.com/en/user-guide/snowflake-cortex/llm-functions) for the latest available models.
+
+After modifying, restart the proxy:
+
+```bash
+pm2 restart claude-proxy
+```
+
 ## Commands
 
 ```bash

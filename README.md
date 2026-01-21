@@ -138,7 +138,35 @@ pm2 start $(which litellm) --name claude-proxy --interpreter $(which python3) --
 pm2 save
 ```
 
-### Step 7: Launch Claude
+### Step 7: Configure Claude Code
+
+Before launching Claude, configure it to use your local proxy instead of Anthropic's servers. This bypasses the login screen.
+
+**1. Mark onboarding as complete:**
+
+```bash
+echo '{"hasCompletedOnboarding": true}' > ~/.claude.json
+```
+
+**2. Point Claude to your local proxy:**
+
+```bash
+claude config set anthropicBaseUrl http://127.0.0.1:8001
+```
+
+**3. Set the API key (must match `master_key` in config):**
+
+```bash
+claude config set anthropicApiKey sk-local-dev-1234
+```
+
+**4. Whitelist localhost:**
+
+```bash
+claude config set allowSite 127.0.0.1:8001
+```
+
+### Step 8: Launch Claude
 
 ```bash
 claude

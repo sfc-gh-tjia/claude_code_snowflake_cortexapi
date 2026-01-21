@@ -1,6 +1,6 @@
 # Claude Code on Snowflake Cortex
 
-Run [Claude Code](https://code.claude.com/docs/en/overview) using Snowflake's Cortex AI service as the backend—uses Snowflake credits instead of Claude API credits.
+Run [Claude Code](https://code.claude.com/docs/en/overview) using [Snowflake Cortex](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-rest-api) as your LLM inference backend.
 
 ```
 ┌─────────────────┐      ┌─────────────────┐      ┌─────────────────┐
@@ -9,11 +9,25 @@ Run [Claude Code](https://code.claude.com/docs/en/overview) using Snowflake's Co
 └─────────────────┘      └─────────────────┘      └─────────────────┘
 ```
 
-## Why This Exists
+## Overview
 
-Snowflake Cortex provides access to Claude models through their platform. This setup:
+This solution enables you to use Claude Code with Snowflake Cortex as the inference layer, providing enterprise-grade flexibility and cost management.
 
-- **Proxies** Claude Code requests through LiteLLM to Snowflake's API
+### Key Benefits
+
+| Feature | Description |
+|---------|-------------|
+| **🚫 No Claude API Required** | No need for Anthropic API keys or Claude subscription—runs entirely on your Snowflake account |
+| **🔄 Model Flexibility** | Use **any LLM available in Snowflake Cortex**: Claude, OpenAI GPT, Google Gemini, Meta Llama, and more |
+| **📊 Native Usage Tracking** | Track token consumption, costs, and usage directly in Snowflake with built-in `ACCOUNT_USAGE` views |
+| **💰 Unified Billing** | All LLM costs consolidated in your existing Snowflake bill—no separate API billing |
+| **🔐 Enterprise Security** | Leverage Snowflake's security, governance, and compliance features |
+
+## How It Works
+
+This setup uses [LiteLLM](https://docs.litellm.ai/docs/) as a local proxy to route Claude Code requests to Snowflake Cortex:
+
+- **Proxies** Claude Code requests through LiteLLM to Snowflake's Cortex REST API
 - **Auto-refreshes** JWT tokens every 50 minutes (Snowflake tokens expire in 1 hour)
 - **Patches** a LiteLLM compatibility issue with Snowflake's API
 
